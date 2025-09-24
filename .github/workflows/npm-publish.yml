@@ -1,0 +1,59 @@
+name: Publish Package to npm
+
+on:
+  push:
+    branches: 
+      - main  # or your default branch name
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure npm for authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          
+      - name: Determine version changes
+        id: changes
+        run: |
+          git fetch origin
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          echo "Changed files: $CHANGED_FILES"
+          
+          if echo "$CHANGED_FILES" | grep -E "^(package.json|index.js|.*\\.js)$" > /dev/null; then
+            echo "needs_publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "needs_publish=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump version and create tag
+        if: steps.changes.outputs.needs_publish == 'true'
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          
+          # Determine if it's a major, minor, or patch release based on changes
+          # Defaulting to patch for now, but this could be enhanced
+          npm version patch -m "Bump version to %s [skip ci]"
+          
+          # Push the new tag
+          git push origin HEAD:main --follow-tags
+
+      - name: Publish to npm
+        if: steps.changes.outputs.needs_publish == 'true'
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

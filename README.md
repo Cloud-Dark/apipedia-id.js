@@ -401,6 +401,18 @@ This will run extreme long chains to verify that the fluent API works perfectly 
 npm run test:coverage
 ```
 
+## 🚀 Automatic Publishing
+
+This package supports automatic publishing to npm via GitHub Actions. To set it up:
+
+1. Create an npm automation token at [npm Token Creation](https://www.npmjs.com/settings/your-username/tokens)
+2. Add the token as a GitHub secret in your repository settings:
+   - Go to Settings → Secrets and Variables → Actions
+   - Add a new secret named `NPM_TOKEN` with your npm token as the value
+3. The GitHub Action will automatically publish to npm when changes are pushed to the main branch
+
+The automatic publishing workflow is defined in `.github/workflows/npm-publish-semver.yml`.
+
 ## 🎯 Perfect Chaining Examples
 
 The library now supports the **exact syntax you requested**:

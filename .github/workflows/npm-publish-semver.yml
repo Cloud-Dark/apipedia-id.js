@@ -1,0 +1,81 @@
+name: Publish Package to npm with Semantic Versioning
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for commit analysis
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Determine version bump type
+        id: version
+        run: |
+          # Analyze commit messages to determine version bump type
+          COMMITS=$(git log $(git describe --tags --abbrev=0)..HEAD --oneline)
+          echo "Commits since last tag: $COMMITS"
+          
+          # Check for breaking changes
+          if echo "$COMMITS" | grep -i -E "BREAKING CHANGE|major" > /dev/null || echo "$COMMITS" | grep -i -E "^\w.*:" | grep -i -E "BREAKING CHANGE|major" > /dev/null; then
+            BUMP_TYPE="major"
+          # Check for new features
+          elif echo "$COMMITS" | grep -i -E "feat|minor" > /dev/null; then
+            BUMP_TYPE="minor"
+          # Default to patch for other changes
+          else
+            BUMP_TYPE="patch"
+          fi
+          
+          echo "Bump type: $BUMP_TYPE"
+          echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
+
+      - name: Configure git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+      - name: Bump version
+        run: |
+          npm version ${{ steps.version.outputs.bump_type }} -m "Bump version to %s [skip ci]"
+
+      - name: Push changes and tags
+        run: |
+          git push origin HEAD:main --follow-tags
+
+      - name: Extract version
+        id: package-version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publish to npm
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.package-version.outputs.version }}
+          release_name: Release v${{ steps.package-version.outputs.version }}
+          draft: false
+          prerelease: false
