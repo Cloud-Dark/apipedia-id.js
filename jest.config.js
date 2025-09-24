@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 module.exports = {
   testEnvironment: 'node',
+  setupFiles: ['<rootDir>/jest.setup.js'],
   collectCoverageFrom: [
     'index.js',
     '!node_modules/**'

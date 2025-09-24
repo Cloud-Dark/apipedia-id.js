@@ -61,6 +61,82 @@ client.telegramSendButtons('368628054', 'Choose an option:', buttons);
 
 // Send Telegram document
 client.telegramSendDocument('368628054', 'https://temp.apipedia.id/example/sample-1.pdf', 'Document caption', 'document.pdf');
+
+// Use AI Chat
+client.aiChat('Hello, how can you help me?', 'b33a2b7b-fd21-41af-92ee-268bcbccce49', 'json');
+```
+
+## AI Chat and Telegram Implementation Example
+
+Here's a practical example using environment variables for security:
+
+### Using AI Chat with Content Writing Assistant
+```javascript
+require('dotenv').config();
+const apipedia = require('apipedia.js');
+
+// Initialize with your AI credentials from environment variables
+const client = apipedia(
+  process.env.APIPEDIA_AI_APPKEY || 'your-ai-appkey-here', 
+  process.env.APIPEDIA_AI_AUTHKEY || 'your-ai-authkey-here'
+);
+
+async function exampleAIUsage() {
+  try {
+    // Send a message to the AI Content Writing Assistant
+    const response = await client.aiChat(
+      'Hello, how can you help me?',
+      process.env.APIPEDIA_AI_AGENT_ID || 'b33a2b7b-fd21-41af-92ee-268bcbccce49',
+      'json'
+    );
+    
+    console.log('AI Response:', response.getResult());
+    
+    // Chain: Send the AI response to Telegram
+    await response.toTelegram(
+      process.env.TEST_TELEGRAM_RECEIVER || '368628054', 
+      'AI Response: '
+    );
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+exampleAIUsage();
+```
+
+### Using Telegram with Your Credentials
+```javascript
+require('dotenv').config();
+const apipedia = require('apipedia.js');
+
+// Initialize with your Telegram credentials from environment variables
+const client = apipedia(
+  process.env.APIPEDIA_TELEGRAM_APPKEY || 'your-telegram-appkey-here', 
+  process.env.APIPEDIA_TELEGRAM_AUTHKEY || 'your-telegram-authkey-here'
+);
+
+async function exampleTelegramUsage() {
+  try {
+    // Send a message via Telegram
+    const response = await client.telegramSendMessage(
+      process.env.TEST_TELEGRAM_RECEIVER || '368628054', 
+      'Hello from Telegram Bot!'
+    );
+    
+    console.log('Telegram Response:', response.getResult());
+    
+    // Chain: Send the result to WhatsApp
+    await response.toWhatsApp(
+      process.env.TEST_WHATSAPP_NUMBER || '6281234567890', 
+      'Telegram message sent: '
+    );
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+
+exampleTelegramUsage();
 ```
 
 ## Features
