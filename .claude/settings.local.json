@@ -3,7 +3,11 @@
     "allow": [
       "Bash(npm run test:*)",
       "Bash(npm install)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git tag:*)",
+      "Bash(npm publish:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

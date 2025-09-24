@@ -31,12 +31,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/username/apipedia-waconsole.git"
+    "url": "git+https://github.com/Cloud-Dark/apipedia-id.js.git"
   },
   "bugs": {
-    "url": "https://github.com/username/apipedia-waconsole/issues"
+    "url": "https://github.com/Cloud-Dark/apipedia-id.js/issues"
   },
-  "homepage": "https://github.com/username/apipedia-waconsole#readme",
+  "homepage": "https://github.com/Cloud-Dark/apipedia-id.js#readme",
+  "publishConfig": {
+    "@cloud-dark:registry": "https://npm.pkg.github.com"
+  },
   "engines": {
     "node": ">=14.0.0"
   },
