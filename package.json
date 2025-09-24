@@ -1,7 +1,7 @@
 {
-  "name": "apipedia-waconsole",
+  "name": "apipedia.js",
   "version": "1.0.0",
-  "description": "🚀 Unified Node.js library for Apipedia Waconsole API - WhatsApp, Telegram, SMS, AI Chat with fluent chaining",
+  "description": "🚀 Official Apipedia.js - Complete Node.js library for Apipedia API: WhatsApp, Telegram, SMS, AI Chat with fluent chaining",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -11,18 +11,20 @@
   },
   "keywords": [
     "apipedia",
+    "apipedia.js",
     "whatsapp",
     "telegram",
     "sms",
     "api",
-    "waconsole",
     "ai-chat",
     "bulk-messaging",
     "chainable-api",
     "indonesia",
     "messaging",
     "bot",
-    "automation"
+    "automation",
+    "official",
+    "javascript"
   ],
   "author": {
     "name": "Apipedia Developer",
@@ -31,12 +33,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cloud-Dark/apipedia-id.js.git"
+    "url": "git+https://github.com/Cloud-Dark/apipedia.js.git"
   },
   "bugs": {
-    "url": "https://github.com/Cloud-Dark/apipedia-id.js/issues"
+    "url": "https://github.com/Cloud-Dark/apipedia.js/issues"
   },
-  "homepage": "https://github.com/Cloud-Dark/apipedia-id.js#readme",
+  "homepage": "https://github.com/Cloud-Dark/apipedia.js#readme",
   "publishConfig": {
     "@cloud-dark:registry": "https://npm.pkg.github.com"
   },

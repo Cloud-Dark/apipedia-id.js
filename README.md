@@ -1,23 +1,23 @@
-# 🚀 Apipedia Waconsole
+# 🚀 Apipedia.js
 
-[![npm version](https://img.shields.io/npm/v/apipedia-waconsole.svg)](https://www.npmjs.com/package/apipedia-waconsole)
+[![npm version](https://img.shields.io/npm/v/apipedia.js.svg)](https://www.npmjs.com/package/apipedia.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/node/v/apipedia-waconsole.svg)](https://nodejs.org/)
+[![Node.js Version](https://img.shields.io/node/v/apipedia.js.svg)](https://nodejs.org/)
 
-**Unified Node.js library for Apipedia Waconsole API** - The most comprehensive solution for WhatsApp, Telegram, SMS, and AI Chat integration with fluent chaining support.
+**Official Apipedia.js** - The complete Node.js library for Apipedia API with WhatsApp, Telegram, SMS, and AI Chat integration featuring revolutionary fluent chaining.
 
-> 🌟 **New in v1.0**: Revolutionary fluent chaining API - chain AI responses to multiple platforms effortlessly!
+> ⭐ **Official JavaScript SDK** - Built by Apipedia team with revolutionary fluent chaining API!
 
 ## Installation
 
 ```bash
-npm install apipedia-waconsole
+npm install apipedia.js
 ```
 
 ## Quick Start
 
 ```javascript
-const apipedia = require('apipedia-waconsole');
+const apipedia = require('apipedia.js');
 
 const client = apipedia('your-appkey', 'your-authkey');
 

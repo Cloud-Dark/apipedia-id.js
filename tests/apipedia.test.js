@@ -1,5 +1,5 @@
 require('dotenv').config();
-const apipedia = require('../index');
+const apipedia = require('../index'); // Local testing - in production: require('apipedia.js')
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');

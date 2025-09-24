@@ -1,5 +1,5 @@
 require('dotenv').config();
-const apipedia = require('../index');
+const apipedia = require('../index'); // Local testing - in production: require('apipedia.js')
 
 // Test credentials - all from environment variables only
 const mockAppKey = process.env.APIPEDIA_APP_KEY;

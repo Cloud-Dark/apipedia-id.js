@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is `apipedia-waconsole`, a Node.js library that provides a unified API wrapper for the Apipedia Waconsole service. The library supports multiple messaging platforms (WhatsApp, Telegram, SMS) and AI chat functionality with a chainable API pattern.
+This is `apipedia.js`, the official Node.js library for Apipedia API. It provides a unified API wrapper supporting multiple messaging platforms (WhatsApp, Telegram, SMS) and AI chat functionality with a revolutionary chainable API pattern.
 
 ## Core Architecture
 
