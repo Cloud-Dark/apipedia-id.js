@@ -1,0 +1,57 @@
+{
+  "name": "apipedia-waconsole",
+  "version": "1.0.0",
+  "description": "🚀 Unified Node.js library for Apipedia Waconsole API - WhatsApp, Telegram, SMS, AI Chat with fluent chaining",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:comprehensive": "node tests/test-comprehensive-chaining.js",
+    "test:coverage": "jest --coverage",
+    "start": "node tests/example.js"
+  },
+  "keywords": [
+    "apipedia",
+    "whatsapp",
+    "telegram",
+    "sms",
+    "api",
+    "waconsole",
+    "ai-chat",
+    "bulk-messaging",
+    "chainable-api",
+    "indonesia",
+    "messaging",
+    "bot",
+    "automation"
+  ],
+  "author": {
+    "name": "Apipedia Developer",
+    "url": "https://apipedia.id"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/apipedia-waconsole.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/apipedia-waconsole/issues"
+  },
+  "homepage": "https://github.com/username/apipedia-waconsole#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "CLAUDE.md",
+    ".env.example"
+  ],
+  "dependencies": {
+    "axios": "^1.6.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "dotenv": "^16.0.0"
+  }
+}
