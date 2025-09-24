@@ -173,13 +173,13 @@ await client.whatsapp(process.env.TEST_WHATSAPP_NUMBER, 'Hello')
 
 The following example files have been created to demonstrate usage:
 
-1. `test-ai-implementation.js` - Shows how to use AI chat functionality with environment variables
-2. `test-telegram-implementation.js` - Shows how to use Telegram functionality with environment variables
+1. `tests/test-ai-implementation.js` - Shows how to use AI chat functionality with environment variables
+2. `tests/test-telegram-implementation.js` - Shows how to use Telegram functionality with environment variables
 
 You can run these examples with:
 ```
-node test-ai-implementation.js
-node test-telegram-implementation.js
+node tests/test-ai-implementation.js
+node tests/test-telegram-implementation.js
 ```
 
 Make sure to set up your `.env` file with the appropriate credentials before running these examples.

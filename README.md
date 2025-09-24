@@ -139,6 +139,19 @@ async function exampleTelegramUsage() {
 exampleTelegramUsage();
 ```
 
+### Additional Examples
+
+For more detailed examples, check out the test files in the `tests/` directory:
+
+- `tests/test-ai-implementation.js` - Shows how to use AI chat functionality
+- `tests/test-telegram-implementation.js` - Shows how to use Telegram functionality
+
+You can run these examples with:
+```
+node tests/test-ai-implementation.js
+node tests/test-telegram-implementation.js
+```
+
 ## Features
 
 - **WhatsApp Messaging**: Send text messages and media attachments (images, documents, etc.)
@@ -345,9 +358,9 @@ await client.updatePresence('6281234567890', 'composing', 10);
 await client.updatePresence('6281234567890', 'recording');
 ```
 
-## Environment Configuration
+## Environment Variables
 
-Create a `.env` file in your project root:
+For security, credentials should be stored in environment variables rather than hardcoded. Create a `.env` file in your project root:
 
 ```bash
 # Copy from .env.example and fill in your actual keys
