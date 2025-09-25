@@ -169,12 +169,74 @@ await client.whatsapp(process.env.TEST_WHATSAPP_NUMBER, 'Hello')
   .toTelegram(process.env.TEST_TELEGRAM_RECEIVER, 'WhatsApp message received: ');
 ```
 
+## Message Status Feature
+
+### Implementation
+The Message Status functionality is implemented in three methods of the `Apipedia` class:
+
+1. `getMessageStatusAll(messageId)` - Get complete message status information from `/api/messages/status/all`
+2. `getLastStatus(messageId)` - Get the last status of a message from `/api/status/last`
+3. `getLastReceiptStatus(messageId)` - Get the last receipt status from `/api/messages/status/last/receipt`
+
+Example implementation for getMessageStatusAll:
+```javascript
+async getMessageStatusAll(messageId) {
+  const data = {
+    appkey: this.appkey,
+    authkey: this.authkey,
+    message_id: messageId
+  };
+
+  try {
+    const response = await axios.get(`${this.messagesBaseURL}/status/all`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    });
+    this.result = response.data;
+    return this; // For chaining
+  } catch (error) {
+    // Error handling code...
+  }
+}
+```
+
+### Usage
+```javascript
+require('dotenv').config();
+const apipedia = require('./index.js');
+const client = apipedia(
+  process.env.APIPEDIA_APPKEY, 
+  process.env.APIPEDIA_AUTHKEY
+);
+
+// Get all statuses for a specific message
+const response = await client.getMessageStatusAll('your-message-id');
+console.log(response.getResult());
+
+// Get the last status of a message
+const lastStatus = await client.getLastStatus('your-message-id');
+console.log(lastStatus.getResult());
+
+// Get the last receipt status
+const receiptStatus = await client.getLastReceiptStatus('your-message-id');
+console.log(receiptStatus.getResult());
+```
+
+### Features
+- Track complete message status information
+- Monitor message delivery and read receipts
+- Integrates with the chainable API system
+- Can forward status information to other platforms (WhatsApp, Telegram, SMS)
+
 ## Example Files
 
 The following example files have been created to demonstrate usage:
 
 1. `tests/test-ai-implementation.js` - Shows how to use AI chat functionality with environment variables
 2. `tests/test-telegram-implementation.js` - Shows how to use Telegram functionality with environment variables
+3. `docs/message-status-examples.md` - Shows how to use message status functionality with direct API calls and library methods
 
 You can run these examples with:
 ```

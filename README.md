@@ -281,21 +281,7 @@ Update WhatsApp presence status.
 - `presence`: Presence type ('composing', 'recording', 'online', etc.)
 - `duration` (optional): Duration in seconds
 
-### Message Status Methods
-#### getMessageStatusAll(messageId)
-Get complete message status information.
-
-- `messageId`: ID of the message to check
-
-#### getLastStatus(messageId)
-Get the last status of a message.
-
-- `messageId`: ID of the message to check
-
-#### getLastReceiptStatus(messageId)
-Get the last receipt status of a message.
-
-- `messageId`: ID of the message to check
+### Message Status Methods\n#### getMessageStatusAll(messageId)\nGet complete message status information.\n\n- `messageId`: ID of the message to check\n\n#### getLastStatus(messageId)\nGet the last status of a message.\n\n- `messageId`: ID of the message to check\n\n#### getLastReceiptStatus(messageId)\nGet the last receipt status of a message.\n\n- `messageId`: ID of the message to check\n\n### Message Status Examples\n\nThese methods correspond to the following API endpoints:\n\n**Get all message statuses:**\n```bash\ncurl --location --request GET 'https://waconsole.apipedia.id/api/messages/status/all' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n     \"appkey\":\"Insert your APP Key\",\n     \"authkey\":\"Insert your Auth Key\",\n     \"message_id\":\"MESSAGE_ID\"\n  }'\n```\n\n**Get last message status:**\n```bash\ncurl --location --request GET 'https://waconsole.apipedia.id/api/status/last' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n     \"appkey\":\"Insert your APP Key\",\n     \"authkey\":\"Insert your Auth Key\",\n     \"message_id\":\"MESSAGE_ID\"\n  }'\n```\n\n**Get last receipt status:**\n```bash\ncurl --location --request GET 'https://waconsole.apipedia.id/api/messages/status/last/receipt' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n     \"appkey\":\"Insert your APP Key\",\n     \"authkey\":\"Insert your Auth Key\",\n     \"message_id\":\"MESSAGE_ID\"\n  }'\n```
 
 ### Chainable Cross-Platform Methods
 #### toWhatsApp(to, prefix = '')
